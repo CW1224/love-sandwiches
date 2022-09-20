@@ -54,6 +54,12 @@ def update_sales_worksheet(data):
     sales_worksheet.append_row(data)
     print("Sales worksheet uploaded successfully.\n")
 
+def update_surplus_worksheet(data):
+    print("Updating surplus worksheet...\n")
+    surplus_worksheet = SHEET.worksheet("surplus")
+    surplus_worksheet.append_row(data)
+    print("Surplus worksheet uploaded successfully.\n")
+
 def calculate_surface_data(sales_row):
     print("Calculating surplus data...\n")
     stock = SHEET.worksheet("stock").get_all_values()
@@ -71,7 +77,7 @@ def main():
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surface_data(sales_data)
-    print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
 
 print("Welcome to Love Sandwiches Data Automation")
 main()
