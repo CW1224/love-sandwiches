@@ -66,6 +66,16 @@ def calculate_surface_data(sales_row):
     
     return surplus_data
 
+def get_last_five_sales_entries():
+    sales = SHEET.worksheet("sales")
+    
+    columns = []
+    for ind in range(1,7):
+        column = sales.col_values(ind)
+        columns.append(column[-5:])
+    
+    return columns
+
 def main():
     data = get_sales_data()
     sales_data = [int(num) for num in data]
@@ -74,4 +84,5 @@ def main():
     update_worksheet(new_surplus_data, "surplus")
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+# main()
+sales_columns = get_last_five_sales_entries()
